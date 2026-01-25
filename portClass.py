@@ -5,13 +5,14 @@
 class port:
     def __init__(self, acronym, portNum, spelledOut, desc):
         #pass = null operator
-        self.acronym = acronym
-        self.portNum = portNum
-        self.spelledOut = spelledOut
-        self.desc = desc
+        self.__acronym = acronym
+        self.__portNum = portNum
+        self.__spelledOut = spelledOut
+        self.__desc = desc
 
-    def getAcronym():
-        pass
+    #the return f thing allow you to put {} and variables in stuff
+    def getAcronym(self):
+        return f"{self.__acronym}"
     def setAcronum():
         pass
     def getPortNum():
