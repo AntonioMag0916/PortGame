@@ -1,8 +1,6 @@
 #Port game start, 1/25/26
 import portClass
 
-
-
 http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
 https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
 smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol", True)
@@ -18,7 +16,6 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 
 #ftpClient
 #ftpServer
-#ssh
 #pop3
 #snmp
 #imaps
@@ -31,14 +28,11 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 #ldaps
 #starttls
 #smtps 
-#syslog
 #ldap
 #snmp-trap
-#ntp
 #tftp
 #dhcpClient
 #dhcpServer
-#dns
 #mysql
 #rtcp
 #pop3s
