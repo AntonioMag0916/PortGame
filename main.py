@@ -1,5 +1,8 @@
 #Port game start, 1/25/26
 import portClass
+import questionMaker
+import random
+import math
 
 http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
 https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
@@ -14,13 +17,17 @@ syslog = portClass.port("Syslog", 514, "System Logging", "UDP", "Enables central
 ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol", True)
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
+portsLen = len(ports)
 
-print(type(ports[0]))
+#amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-"""
-for x in ports:
-    print(x.getAcronym())
-"""
+questions = ["a", "b", "c"]
+
+
+
+
+for x in amountTracker:
+    print(x)
 
 
 #ftpClient
