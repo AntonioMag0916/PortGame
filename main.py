@@ -17,16 +17,23 @@ syslog = portClass.port("Syslog", 514, "System Logging", "UDP", "Enables central
 ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol", True)
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
+
+question1 = questionMaker.question("What is the port number of ", ports)
+question2 = questionMaker.question("what is the transmission type of ", ports)
+question3 = questionMaker.question("what is the acronym of the port num ", ports)
+
 portsLen = len(ports)
 
 #amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 questions = ["What is the port number of ", "what is the transmission type of ", "what is the acronym of the port num "]
 tempQuestions = ["What is the port number of "]
-questionManager = questionMaker.qMaker(tempQuestions, ports)
+questionManager = questionMaker.qMaker(tempQuestions)
 
 questionManager.randomQuestion()
 
+#refactor to where the program will NEVER ask the same question twice
+#maybe how we can do it is store ports for each question so it can just look up if needed
 
 
 
@@ -54,5 +61,7 @@ questionManager.randomQuestion()
 #sqlnet
 
 #http = portClass.port("HTTP", 80, "Hypertext Transport Protocol", "Web stuff")
-
+"""
+for x in range(5) 
+"""
 #print(http.getAcronym())

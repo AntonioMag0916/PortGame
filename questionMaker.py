@@ -3,11 +3,9 @@ import math
 
 class qMaker:
 
-    
-    def __init__(self, questions, ports):
+
+    def __init__(self, questions):
         self.__questions = questions
-        self.__ports = ports
-        self.__currentPort = self.__selectNewPort()
         self.__currentQuestion = self.__selectNewQuestion()
         self.__score = 0
 
@@ -28,23 +26,12 @@ class qMaker:
             print("Incorrect, the answer was: " + str(self.__currentPort.getPortNum()))
             print("\nYour final score was: " + str(self.__score))
 
-            
-        
-        
-    
-
-
-
     def __selectNewQuestion(self):
         questionsLen = len(self.__questions)
         index = math.floor(random.random() * questionsLen)
         return self.__questions[index]
 
-    def __selectNewPort(self):
-        
-        portsLen = len(self.__ports)
-        index = math.floor(random.random() * portsLen)
-        return self.__ports[index]
+    
 
 
 #This needs a port list and a string for the question
@@ -53,5 +40,15 @@ class question:
     def __init__(self, question, ports):
         self.__ports = ports
         self.__question = question
+        self.__currentPort = self.__selectNewPort()
 
+
+    def removePort(self, portIndex):
+        pass
+        
+    def __selectNewPort(self):
+        
+        portsLen = len(self.__ports)
+        index = math.floor(random.random() * portsLen)
+        return self.__ports[index]
     
