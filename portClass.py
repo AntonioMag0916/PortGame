@@ -3,29 +3,43 @@
 #More stuff
 
 class port:
-    def __init__(self, acronym, portNum, spelledOut, desc):
+    def __init__(self, acronym, portNum, spelledOut, transmissionType, desc, hasAcronym):
         #pass = null operator
         self.__acronym = acronym
         self.__portNum = portNum
         self.__spelledOut = spelledOut
+        self.__transType = transmissionType
         self.__desc = desc
+        self.__hasAcronym = hasAcronym
 
     #the return f thing allow you to put {} and variables in stuff
     def getAcronym(self):
         return f"{self.__acronym}"
-    def setAcronum():
-        pass
-    def getPortNum():
-        pass
-    def setPortNum():
-        pass
-    def getSpelledOut():
-        pass
-    def setSpelledOut():
-        pass
-    def getDesc():
-        pass
-    def setDesc():
-        pass
-    
+    def _setAcronum(self, newAcronum):
+        self.__acronym = newAcronum
+
+    def getPortNum(self):
+        return f"{self.__portNum}"
+    def _setPortNum(self, newPortNum):
+        self.__portNum = newPortNum
+
+    def getSpelledOut(self):
+        return f"{self.__spelledOut}"
+    def _setSpelledOut(self, newSpelledOut):
+        self.__spelledOut = newSpelledOut
+
+    def getTransmissionType(self):
+        return f"{self.__transType}"
+    def _setTransmissionType(self, newTransType):
+        self.__transType = newTransType
+
+    def getDesc(self):
+        return f"{self.__desc}"
+    def _setDesc(self, newDesc):
+        self.__desc = newDesc
+
+    def _getHasAcronym(self):
+        return f"{self.__hasAcronym}"
+    def _setHasAcronym(self, newHasAcryonym):
+        self.__hasAcronym = newHasAcryonym
     
