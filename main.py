@@ -13,6 +13,13 @@ ftp = portClass.port("FTP", 21, "File Transfer Protocol", "TCP/UDP", "Allows for
 syslog = portClass.port("Syslog", 514, "System Logging", "UDP", "Enables centralized collection of logs and events", True)
 ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol", True)
 
+ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
+
+
+for x in ports:
+    print(x.getAcronym())
+
+
 
 #ftpClient
 #ftpServer
