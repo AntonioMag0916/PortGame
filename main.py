@@ -21,17 +21,15 @@ portsLen = len(ports)
 
 #amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-questions = ["a", "b", "c"]
+questions = ["What is the port number of ", "what is the transmission type of ", "what is the acronym of the port num "]
+tempQuestions = ["What is the port number of "]
+questionManager = questionMaker.qMaker(tempQuestions, ports)
+
+questionManager.randomQuestion()
 
 
 
 
-for x in amountTracker:
-    print(x)
-
-
-#ftpClient
-#ftpServer
 #pop3
 #snmp
 #imaps
@@ -49,7 +47,6 @@ for x in amountTracker:
 #tftp
 #dhcpClient
 #dhcpServer
-#mysql
 #rtcp
 #pop3s
 #rtp

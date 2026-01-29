@@ -7,16 +7,33 @@ class qMaker:
     def __init__(self, questions, ports):
         self.__questions = questions
         self.__ports = ports
-        self.__currentPort = self.selectNewPort()
-        self.__currentQuestion = self.selectNewQuestion()
+        self.__currentPort = self.__selectNewPort()
+        self.__currentQuestion = self.__selectNewQuestion()
+        self.__score = 0
 
        
     
 
     def randomQuestion(self):
         
-        answer = 
+        answer = input(self.__currentQuestion + self.__currentPort.getAcronym() + "?: ")
+        currentScore = self.__score
+
+        if (answer == self.__currentPort.getPortNum()):
+            self.__score += 1
+            print("Correct!\n")
+            self.__currentPort = self.__selectNewPort()
+            self.randomQuestion()
+        else:
+            print("Incorrect, the answer was: " + str(self.__currentPort.getPortNum()))
+            print("\nYour final score was: " + str(self.__score))
+
+            
         
+        
+    
+
+
 
     def __selectNewQuestion(self):
         questionsLen = len(self.__questions)
