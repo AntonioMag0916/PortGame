@@ -27,6 +27,7 @@ ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 -If there are no ports for a question, do not choose it (if we are using random)
 -Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
 -Input validation 
+-Add a way for the user to put TCP/UDP or TCP or UDP for a port that has both TCP/UDP (reword question too )
 """
 
 #Later on refactor so the question type isnt just a magic number
