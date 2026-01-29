@@ -15,10 +15,12 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 
+print(type(ports[0]))
 
+"""
 for x in ports:
     print(x.getAcronym())
-
+"""
 
 
 #ftpClient

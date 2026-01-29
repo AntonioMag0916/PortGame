@@ -28,12 +28,12 @@ class port:
     def _setSpelledOut(self, newSpelledOut):
         self.__spelledOut = newSpelledOut
 
-    def _getTransmissionType(self):
+    def getTransmissionType(self):
         return f"{self.__transType}"
     def _setTransmissionType(self, newTransType):
         self.__transType = newTransType
 
-    def _getDesc(self):
+    def getDesc(self):
         return f"{self.__desc}"
     def _setDesc(self, newDesc):
         self.__desc = newDesc
