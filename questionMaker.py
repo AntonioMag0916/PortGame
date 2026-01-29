@@ -8,6 +8,7 @@ class qMaker:
         self.__questions = questions
         self.__currentQuestion = self.__selectNewQuestion()
         self.__score = 0
+        self.__correctQuestions = []
     
     #Handles starting to ask the new questions
     def startQuestions(self):
@@ -18,6 +19,9 @@ class qMaker:
         #Continues until the user is wrong (later add other stops)
         #Answer calculation will be based off a function
         if (self.__currentQuestion.checkAnswer(answer)):
+            
+            correctQuestion = str(self.__currentQuestion.getFormattedQuestion()) + " : " + str(answer)
+            self.__correctQuestions.append(correctQuestion)
             self.__score += 1
             print("Correct!\n")
             self.__currentQuestion.updatePort()
@@ -27,6 +31,9 @@ class qMaker:
         else:
             print("Incorrect, the answer was: " + str(self.__currentQuestion.findCorrect()))
             print("\nYour final score was: " + str(self.__score))
+            print("\nCorrect answers: ")
+            for x in self.__correctQuestions:
+                print(x)
 
     def __selectNewQuestion(self):
         questionsLen = len(self.__questions)
@@ -53,7 +60,10 @@ class portQuestion:
     def askQuestion(self):
         self.__formattedQuestion = self.__formatQuestion()
         return self.__formattedQuestion
-        
+    
+    def getFormattedQuestion(self):
+        return self.__formattedQuestion
+
     #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
     #Later add validation
     def checkAnswer(self, userInput):
@@ -107,8 +117,6 @@ class portQuestion:
         self.__currentIndex = self.__selectNewPort()
         self.__currentPort = self.__ports[self.__currentIndex]
 
-        for x in self.__ports:
-            print(x.getAcronym())
 
 #We ask the question 
 #after that check if correct or not
