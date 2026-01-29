@@ -18,19 +18,23 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 
-question1 = questionMaker.question("What is the port number of ", ports)
-question2 = questionMaker.question("what is the transmission type of ", ports)
-question3 = questionMaker.question("what is the acronym of the port num ", ports)
 
-portsLen = len(ports)
+#Later on refactor so the question type isnt just a magic number
+#Question type is what is it ASKING for
+#might need answer type then so it knows how to ask it
+#Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
+#A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
+question1 = questionMaker.portQuestion("What is the port number of ", ports, 2, 0)
+question2 = questionMaker.portQuestion("what is the transmission type of ", ports, 2, 1)
+question3 = questionMaker.portQuestion("what is the acronym of the port num ", ports, 0, 2)
 
 #amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+#tempQuestions = ["What is the port number of "]
 
-questions = ["What is the port number of ", "what is the transmission type of ", "what is the acronym of the port num "]
-tempQuestions = ["What is the port number of "]
-questionManager = questionMaker.qMaker(tempQuestions)
+questions = [question1, question2, question3]
+questionManager = questionMaker.qMaker(questions)
 
-questionManager.randomQuestion()
+questionManager.startQuestions()
 
 #refactor to where the program will NEVER ask the same question twice
 #maybe how we can do it is store ports for each question so it can just look up if needed
