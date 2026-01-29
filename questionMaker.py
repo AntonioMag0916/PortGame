@@ -3,7 +3,7 @@ import math
 
 class qMaker:
 
-
+    
     def __init__(self, questions, ports):
         self.__questions = questions
         self.__ports = ports
@@ -47,7 +47,11 @@ class qMaker:
         return self.__ports[index]
 
 
+#This needs a port list and a string for the question
 #This might be used if i need to check out for type of question it is incase i want to do input validation
 class question:
-    def __init__(self):
-        pass
+    def __init__(self, question, ports):
+        self.__ports = ports
+        self.__question = question
+
+    
