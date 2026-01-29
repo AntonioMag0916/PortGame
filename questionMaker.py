@@ -12,29 +12,31 @@ class qMaker:
     
     #Handles starting to ask the new questions
     def startQuestions(self):
+        
         #answer will be different depending on the aType
         answer = input(self.__currentQuestion.askQuestion() + "?: ")
-        #currentScore = self.__score - this will eventually be used if pausing or whatnot
+        
 
-        #Continues until the user is wrong (later add other stops)
-        #Answer calculation will be based off a function
+        #Calculates Answer using the currentQuestion object
         if (self.__currentQuestion.checkAnswer(answer)):
             
             correctQuestion = str(self.__currentQuestion.getFormattedQuestion()) + " : " + str(answer)
             self.__correctQuestions.append(correctQuestion)
+            
             self.__score += 1
             print("Correct!\n")
+            
             self.__currentQuestion.updatePort()
-
             self.__currentQuestion = self.__selectNewQuestion()
             self.startQuestions()
         else:
             print("Incorrect, the answer was: " + str(self.__currentQuestion.findCorrect()))
             print("\nYour final score was: " + str(self.__score))
             print("\nCorrect answers: ")
-            for x in self.__correctQuestions:
-                print(x)
+            for correctQuestion in self.__correctQuestions:
+                print(correctQuestion)
 
+    #(might need change)
     def __selectNewQuestion(self):
         questionsLen = len(self.__questions)
         index = math.floor(random.random() * questionsLen)
@@ -43,8 +45,7 @@ class qMaker:
     
 
 
-#This needs a port list and a string for the question
-#This might be used if i need to check out for type of question it is incase i want to do input validation
+#(Input validation needed)
 class portQuestion:
     def __init__(self, question, ports, questionType, answerType):
         self.__ports = ports.copy()
@@ -100,25 +101,8 @@ class portQuestion:
 
         portsLen = len(self.__ports)
         return math.floor(random.random() * portsLen)
-        #return self.__ports[index]
         
-
-    
-
-    #Removes the current port
-    #
-    #def __removePort(self):   
     def updatePort(self):
-
-        portsLen = len(self.__ports)
-        
-
         self.__ports.pop(self.__currentIndex)
         self.__currentIndex = self.__selectNewPort()
         self.__currentPort = self.__ports[self.__currentIndex]
-
-
-#We ask the question 
-#after that check if correct or not
-#if it is correct, then we go to the question and remove the port from that question then continue
-#"What is the port number of " + variable "?: "

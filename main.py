@@ -18,6 +18,16 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 
+"""
+---Needed Updates---
+-Make a menu where you can choose if you want to do random questions or a select question
+-Refactor Q and A type to be more efficent
+-Either create a new class for questionMaker that will only use a single question and not rotate out
+-,or have a variable in the constructor that will choose which function to use
+-If there are no ports for a question, do not choose it (if we are using random)
+-Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
+-Input validation 
+"""
 
 #Later on refactor so the question type isnt just a magic number
 #Question type is what is it ASKING for
