@@ -1,5 +1,6 @@
 import random
 import math
+import re
 
 #(Input validation needed)
 class portQuestion:
@@ -28,10 +29,12 @@ class portQuestion:
             case 0:
                 return (userInput == self.__currentPort.getPortNum())
             case 1:
-                return (userInput == self.__currentPort.getTransmissionType())
+                return self.__checkTransmission(userInput)
             case 2: 
                 return (userInput == self.__currentPort.getAcronym()) 
 
+
+    #Just returns the answer
     def findCorrect(self):
         match self.__aType:
             case 0:
@@ -62,3 +65,15 @@ class portQuestion:
         self.__ports.pop(self.__currentIndex)
         self.__currentIndex = self.__selectNewPort()
         self.__currentPort = self.__ports[self.__currentIndex]
+
+
+    #Helper functions
+    def __checkTransmission(self, input):
+        tType = re.split(r'\W', self.__currentPort.getTransmissionType())
+
+        #Have this ignore cases later
+        if (len(tType) == 2):
+            return (input == tType[0] or input == tType[1])
+        else:
+            return input == tType[0]
+
