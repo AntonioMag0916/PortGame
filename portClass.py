@@ -11,7 +11,6 @@ class port:
         self.__transType = transmissionType
         self.__desc = desc
         self.__hasAcronym = hasAcronym
-        self.__
 
     #the return f thing allow you to put {} and variables in stuff
     def getAcronym(self):

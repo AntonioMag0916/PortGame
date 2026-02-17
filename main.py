@@ -21,6 +21,7 @@ ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 
 """
 ---Needed Updates---
+-make answers not care about casing
 -Make a menu where you can choose if you want to do random questions or a select question
 -Refactor Q and A type to be more efficent
 -Either create a new class for questionMaker that will only use a single question and not rotate out
@@ -29,6 +30,9 @@ ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 -Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
 -Input validation 
 -Add a way for the user to put TCP/UDP or TCP or UDP for a port that has both TCP/UDP (reword question too )
+
+-make a way to save score?
+-add correct answers: None!
 """
 
 #Later on refactor so the question type isnt just a magic number
@@ -37,16 +41,43 @@ ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
 #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
 question1 = questionClass.portQuestion("What is the port number of ", ports, 2, 0)
-question2 = questionClass.portQuestion("what is the transmission type of ", ports, 2, 1)
+question2 = questionClass.portQuestion("what is a transmission type of ", ports, 2, 1)
 question3 = questionClass.portQuestion("what is the acronym of the port num ", ports, 0, 2)
 
-#amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-#tempQuestions = ["What is the port number of "]
 
 questions = [question1, question2, question3]
 questionManager = questionMaker.qMaker(questions)
 
 questionManager.startQuestions()
+
+#Menu Draft
+"""
+Welcome to port game
+*Explain rules
+*maybe give a little wait timer
+
+
+1) 3 Questions
+2) Choose question
+3) Random question
+4) (Eventually) port selection
+5) (Eventually) question selection
+6) Quit 
+
+*During game
+
+*After a loss 
+1) Replay
+2) List correct questions (with back button)
+3) Back to lobby
+3) Quit
+
+
+
+"""
+
+
+
 
 #refactor to where the program will NEVER ask the same question twice
 #maybe how we can do it is store ports for each question so it can just look up if needed
