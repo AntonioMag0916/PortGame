@@ -1,8 +1,7 @@
 #Port game start, 1/25/26
 import portClass
 import questionMaker
-import random
-import math
+import questionClass
 
 http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
 https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
@@ -35,9 +34,9 @@ ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftp, syslog, ntp]
 #might need answer type then so it knows how to ask it
 #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
 #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
-question1 = questionMaker.portQuestion("What is the port number of ", ports, 2, 0)
-question2 = questionMaker.portQuestion("what is the transmission type of ", ports, 2, 1)
-question3 = questionMaker.portQuestion("what is the acronym of the port num ", ports, 0, 2)
+question1 = questionClass.portQuestion("What is the port number of ", ports, 2, 0)
+question2 = questionClass.portQuestion("what is the transmission type of ", ports, 2, 1)
+question3 = questionClass.portQuestion("what is the acronym of the port num ", ports, 0, 2)
 
 #amountTracker = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 #tempQuestions = ["What is the port number of "]

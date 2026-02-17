@@ -1,3 +1,6 @@
+import random
+import math
+
 #(Input validation needed)
 class portQuestion:
     def __init__(self, question, ports, questionType, answerType):
