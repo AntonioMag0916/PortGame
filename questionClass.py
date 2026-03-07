@@ -24,7 +24,10 @@ class portQuestion:
 
     #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
     #Later add validation
+    #Checks userinput against the correct answer
     def checkAnswer(self, userInput):
+        
+        userInput = userInput.upper()
         match self.__aType:
             case 0:
                 return (userInput == self.__currentPort.getPortNum())
@@ -34,7 +37,7 @@ class portQuestion:
                 return (userInput == self.__currentPort.getAcronym()) 
 
 
-    #Just returns the answer
+    #Just returns the correct answer
     def findCorrect(self):
         match self.__aType:
             case 0:
@@ -44,8 +47,12 @@ class portQuestion:
             case 2: 
                 return self.__currentPort.getAcronym()
 
+    def getPortLength(self):
+        return len(self.__ports)
+
     #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
     #What is the port num of HTTP? Q type would be 2
+    #This function simplfy creates the output for the question depending on what the question is asking and how it is asking it
     def __formatQuestion(self):
         match self.__qType:
             case 0:
@@ -65,6 +72,7 @@ class portQuestion:
         self.__ports.pop(self.__currentIndex)
         self.__currentIndex = self.__selectNewPort()
         self.__currentPort = self.__ports[self.__currentIndex]
+
 
 
     #Helper functions

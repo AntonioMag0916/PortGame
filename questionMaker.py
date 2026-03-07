@@ -6,10 +6,12 @@ class qMaker:
     #Initalization of a first question
     def __init__(self, questions):
         self.__questions = questions
+        #Choose one question out of the array
         self.__currentQuestion = self.__selectNewQuestion()
         self.__score = 0
         self.__correctQuestions = []
     
+
     #Handles starting to ask the new questions
     def startQuestions(self):
         
@@ -20,26 +22,51 @@ class qMaker:
         #Calculates Answer using the currentQuestion object
         if (self.__currentQuestion.checkAnswer(answer)):
             
-            correctQuestion = str(self.__currentQuestion.getFormattedQuestion()) + " : " + str(answer)
-            self.__correctQuestions.append(correctQuestion)
-            
             self.__score += 1
             print("Correct!\n")
             
-            self.__currentQuestion.updatePort()
-            self.__currentQuestion = self.__selectNewQuestion()
-            self.startQuestions()
+            correctQuestion = str(self.__score) + ". " + str(self.__currentQuestion.getFormattedQuestion()) + " : " + str(answer)
+            self.__correctQuestions.append(correctQuestion)
+            
+            #if there are no ports in the question
+            #This function could probably look a lot better
+            if (self.__currentQuestion.getPortLength() == 1):
+                
+                #Remove the question
+                self.__questions.pop(self.__questions.index(self.__currentQuestion))
+
+                #If no questions left, end, else, return to normal
+                if (len(self.__questions) == 0):
+                    print("No questions remaining!")
+                    self.__printAnswers()
+                else:
+                    self.__continueQuestions()
+            else:
+                self.__currentQuestion.updatePort()
+                self.__continueQuestions()
+
+           
         else:
             print("Incorrect, the answer was: " + str(self.__currentQuestion.findCorrect()))
-            print("\nYour final score was: " + str(self.__score))
-            print("\nCorrect answers: ")
-            for correctQuestion in self.__correctQuestions:
-                print(correctQuestion)
+            
+            self.__printAnswers()
+            
 
     #(might need change)
     def __selectNewQuestion(self):
         questionsLen = len(self.__questions)
         index = math.floor(random.random() * questionsLen)
         return self.__questions[index]
+    
+    def __printAnswers(self):
+        #Print all correct answers
+        print("\nYour final score was: " + str(self.__score))
+        print("\nCorrect answers: ")
 
+        for correctQuestion in self.__correctQuestions:
+            print(correctQuestion)
+
+    def __continueQuestions(self):
+        self.__currentQuestion = self.__selectNewQuestion()
+        self.startQuestions()  
     
