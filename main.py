@@ -28,10 +28,9 @@ testPorts = [http, dns, ntp]
 -Refactor Q and A type to be more efficent
 -Either create a new class for questionMaker that will only use a single question and not rotate out
 -,or have a variable in the constructor that will choose which function to use
--If there are no ports for a question, do not choose it (if we are using random)
 -Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
 -Input validation 
--Add a way for the user to put TCP/UDP or TCP or UDP for a port that has both TCP/UDP (reword question too )
+
 
 -make a way to save score?
 -add correct answers: None!
