@@ -3,8 +3,6 @@ import time
 
 class myMenu:
     
-
-    
     def startMenu(self):
         self.printMenu()
 

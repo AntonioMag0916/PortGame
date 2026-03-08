@@ -5,13 +5,11 @@ import re
 #(Input validation needed)
 class portQuestion:
     def __init__(self, question, ports, questionType, answerType):
-        self.__ports = ports.copy()
+        self.__masterPorts = ports.copy()
         self.__question = question
-        self.__currentIndex = self.__selectNewPort() 
-        self.__currentPort = self.__ports[self.__currentIndex]
         self.__qType = questionType
         self.__aType = answerType
-        self.__formattedQuestion = self.__formatQuestion()
+        
         
     
 
@@ -49,6 +47,13 @@ class portQuestion:
 
     def getPortLength(self):
         return len(self.__ports)
+
+    def resetQuestion(self):
+        self.__ports = self.__masterPorts.copy()
+        self.__currentIndex = self.__selectNewPort() 
+        self.__currentPort = self.__ports[self.__currentIndex]
+        self.__formattedQuestion = self.__formatQuestion()
+
 
     #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
     #What is the port num of HTTP? Q type would be 2
