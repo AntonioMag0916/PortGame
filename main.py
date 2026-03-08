@@ -2,9 +2,10 @@
 import portClass
 import questionMaker
 import questionClass
+import menu
 
 
-
+theMenu = menu.myMenu()
 
 http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
 https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
@@ -20,6 +21,7 @@ ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftpcon, syslog, ntp]
 testPorts = [http, dns, ntp]
+
 """
 ---Needed Updates---
 -maybe for occurences like ftp, make it to where there can be multiple ports under the same protocol or display how to type in ftp-data/con
@@ -50,7 +52,20 @@ questions = [question1, question3]
 questionManager = questionMaker.qMaker(questions)
 
 
-questionManager.startQuestions()
+while True:
+    
+    userAnswer = theMenu.startMenu()
+
+    if (userAnswer == 0):
+        questionManager.startQuestions()
+        print("")
+    elif (userAnswer == 1):
+        theMenu.coolStuff()
+    elif (userAnswer == 2):
+        print("Goodbye.")
+        raise SystemExit
+        #break
+
 
 #Menu Draft
 """

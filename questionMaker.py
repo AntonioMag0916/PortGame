@@ -1,5 +1,6 @@
 import random
 import math
+import time
 
 class qMaker:
     
@@ -65,6 +66,7 @@ class qMaker:
 
         for correctQuestion in self.__correctQuestions:
             print(correctQuestion)
+            time.sleep(0.5)
 
     def __continueQuestions(self):
         self.__currentQuestion = self.__selectNewQuestion()
