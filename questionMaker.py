@@ -9,7 +9,6 @@ class qMaker:
         self.__masterQuestions = questions.copy()
         #Choose one question out of the array
         
-        self.__hasRan = False
     
     def startQuestions(self):
         self.__startup()
@@ -56,12 +55,7 @@ class qMaker:
             self.__printAnswers()
             
 
-    def __reset(self):
-        
-        #Choose one question out of the array
-        self.__score = 0
-        self.__correctQuestions = []
-
+    
     def __startup(self):
         print("Startup done")
         self.__questions = self.__masterQuestions.copy()
@@ -74,19 +68,20 @@ class qMaker:
 
     #(might need change)
     def __selectNewQuestion(self):
-        print(self.__questions)
-        questionsLen = len(self.__questions)
-        index = math.floor(random.random() * questionsLen)
-        return self.__questions[index]
+        
+        if (len(self.__questions) == 1):
+            return self.__questions[0]
+        else:
+            questionsLen = len(self.__questions)
+            index = math.floor(random.random() * questionsLen)
+            return self.__questions[index]
     
     def __printAnswers(self):
-        
         
         #Print all correct answers
         
         print("\nYour final score was: " + str(self.__score))
         time.sleep(1.5)
-        
         
         
         print("\nCorrect answers: ")

@@ -11,7 +11,8 @@ class portQuestion:
         self.__aType = answerType
         
         
-    
+    def getRawQuestion(self):
+        return self.__question
 
     def askQuestion(self):
         self.__formattedQuestion = self.__formatQuestion()

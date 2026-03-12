@@ -5,7 +5,6 @@ import questionClass
 import menu
 
 
-theMenu = menu.myMenu()
 
 http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
 https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
@@ -28,8 +27,6 @@ testPorts = [http, dns, ntp]
 -maybe have a class that handles the menu flow and display text (like saying ftp-con vs ftp-data)
 -Make a menu where you can choose if you want to do random questions or a select question
 -Refactor Q and A type to be more efficent
--Either create a new class for questionMaker that will only use a single question and not rotate out
--,or have a variable in the constructor that will choose which function to use
 -Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
 -Input validation 
 
@@ -49,6 +46,8 @@ question3 = questionClass.portQuestion("what is the acronym of the port num ", t
 
 
 questions = [question1, question3]
+theMenu = menu.myMenu(questions)
+
 questionManager = questionMaker.qMaker(questions)
 
 
@@ -62,8 +61,14 @@ while True:
     elif (userAnswer == 1):
         theMenu.coolStuff()
     elif (userAnswer == 2):
+        theMenu.printQuestionPicker()
+        #Then wait for user response in the thingy then set the list
+        #Maybe set the questionManager in here
+        #Then make a questionManager thingy that will update the questions list
+    elif (userAnswer == 3):
         print("Goodbye.")
         raise SystemExit
+        
         #break
 
 
