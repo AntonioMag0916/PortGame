@@ -10,20 +10,21 @@ class myMenu:
 
     def printStarterInfo(self):
         print("Welcome to PortGame!")
-        print("This program was made for the purpose of learning and exploring Git")
-        print("You can configure what questions you are asked and what ports are asked")
-        print("When you start the game, it ends when you get a question wrong or you exit out")
-        time.sleep(1.5)
-        print("Now go and test your knowledge!")
+        print("Go and test your knowledge!")
         time.sleep(0.5)
         print("\n")
 
     def printPortInfo(self, ports):
-        pass            
+        c = 1
+        for port in ports:
+            print(f"{c}. "
+                  f"Name: {port.getProtocolName()}, "
+                  f"Number: {port.getPortNum()}, "
+                  f"Transmission: {port.getTransmissionType()}")
+            c += 1
+            time.sleep(.35)
+        print("\n")
 
-
-    def printHelperInfo(self):
-        pass
     
     def startMenu(self):
         options = self.printMenu()
@@ -42,16 +43,16 @@ class myMenu:
     def printMenu(self):
         count = 0
         options = ""
-        print("Start Game (0)")
+        print(f"Start Game ({count})")
         options += f"{count}, "
         count += 1
-        print("Display some cool stuff (1)")
+        print(f"Display port information ({count})")
         options += f"{count}, "
         count += 1 
-        print("Pick specific question (2)")
+        print(f"Pick specific question ({count})")
         options += f"{count}, "
         count += 1
-        print("Exit (3)")  
+        print(f"Exit ({count})")  
         options += f"or {count}"
         count += 1
         return options
@@ -60,9 +61,8 @@ class myMenu:
     def coolStuff(self):
         print("\nThis program was written for fun\n")
         time.sleep(1.5)
-    
-   
 
+    #For Selecting type of question 61-98ish
     def printQuestionOptions(self):
         options = self.__calculateQuestionOptions()
         count = int(options[-1])

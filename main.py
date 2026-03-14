@@ -1,3 +1,15 @@
+"""
+Made by Antonio Magnani
+
+This program was made for the purpose of learning and exploring Git
+You can configure what questions you are asked and what ports are asked
+When you start the game, it ends when you get a question wrong or you exit out
+
+"""
+
+
+        
+
 #Port game start, 1/25/26
 import portClass
 import questionMaker
@@ -47,6 +59,7 @@ question2 = questionClass.portQuestion("what is a transmission type of ", ports,
 question3 = questionClass.portQuestion("What is the protocol name of the port ", testPorts, 0, 2)
 
 
+#Actual startup
 questions = [question1, question3]
 theMenu = menu.myMenu(questions)
 questionManager = questionMaker.qMaker(questions)
@@ -54,7 +67,6 @@ questionManager = questionMaker.qMaker(questions)
 theMenu.printStarterInfo()
 
 
-#chosenQuestion = None
 
 
 while True:
@@ -67,7 +79,10 @@ while True:
         print("")
     #Print cool stuff
     elif (userAnswer == 1):
-        theMenu.coolStuff()
+
+        #make the choice to eiter print all ports in the PortGame or just for the question list
+        #Make user decide that actually 
+        theMenu.printPortInfo(testPorts)
     #Quesetion picker selector
     elif (userAnswer == 2):
         optionAnswer = theMenu.printQuestionOptions()
@@ -80,8 +95,6 @@ while True:
     elif (userAnswer == 3):
         print("Goodbye.")
         raise SystemExit
-        
-        #break
 
 
 #Menu Draft
@@ -145,4 +158,4 @@ Welcome to port game
 """
 for x in range(5) 
 """
-#print(http.getAcronym())
+#print(http.getProtocolName())

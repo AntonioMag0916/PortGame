@@ -33,7 +33,7 @@ class portQuestion:
             case 1:
                 return self.__checkTransmission(userInput)
             case 2: 
-                return (userInput == self.__currentPort.getAcronym()) 
+                return (userInput == self.__currentPort.getProtocolName()) 
 
 
     #Just returns the correct answer
@@ -44,7 +44,7 @@ class portQuestion:
             case 1:
                 return self.__currentPort.getTransmissionType()
             case 2: 
-                return self.__currentPort.getAcronym()
+                return self.__currentPort.getProtocolName()
 
     def getPortLength(self):
         return len(self.__ports)
@@ -66,7 +66,7 @@ class portQuestion:
             case 1: 
                 return self.__question + self.__currentPort.getTransmissionType()
             case 2: 
-                return self.__question + self.__currentPort.getAcronym()
+                return self.__question + self.__currentPort.getProtocolName()
             
 
     def __selectNewPort(self):

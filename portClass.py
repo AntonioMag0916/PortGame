@@ -3,9 +3,9 @@
 #More stuff
 
 class port:
-    def __init__(self, acronym, portNum, spelledOut, transmissionType, desc):
+    def __init__(self, protocolName, portNum, spelledOut, transmissionType, desc):
         #pass = null operator
-        self.__acronym = acronym
+        self.__protocolName = protocolName
         self.__portNum = portNum
         self.__spelledOut = spelledOut
         self.__transType = transmissionType
@@ -13,10 +13,10 @@ class port:
         
 
     #the return f thing allow you to put {} and variables in stuff
-    def getAcronym(self):
-        return f"{self.__acronym}"
-    def _setAcronum(self, newAcronum):
-        self.__acronym = newAcronum
+    def getProtocolName(self):
+        return f"{self.__protocolName}"
+    def _setProtocolName(self, newAcronum):
+        self.__protocolName = newAcronum
 
     def getPortNum(self):
         return f"{self.__portNum}"
