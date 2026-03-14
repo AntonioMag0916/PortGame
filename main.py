@@ -6,29 +6,31 @@ import menu
 
 
 
-http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure", True)
-https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure", True)
-smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol", True)
-telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure", False)
-ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure", True)
-dns = portClass.port("DNS", 53, "Domain Name System", "TCP/UDP", "IPs to human readable text", True)
-mysql = portClass.port("MYSQL", 3306, "MySQL", "TCP", "SQL Server", False)
-ftpdata = portClass.port("FTP-DATA", 20, "FTP-Data", "TCP/UDP", "FTP download and upload service", False)
-ftpcon = portClass.port("FTP-CON", 21, "File Transfer Protocol", "TCP/UDP", "Allows for a stateful channel for FTP commands", True)
-syslog = portClass.port("SYSLOG", 514, "System Logging", "UDP", "Enables centralized collection of logs and events", True)
-ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol", True)
+http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure")
+https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure")
+smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol")
+telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure")
+ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure")
+dns = portClass.port("DNS", 53, "Domain Name System", "TCP/UDP", "IPs to human readable text")
+mysql = portClass.port("MYSQL", 3306, "MySQL", "TCP", "SQL Server")
+ftpdata = portClass.port("FTP-DATA", 20, "File Transfer Protocol-Data", "TCP/UDP", "FTP download and upload service")
+ftpcon = portClass.port("FTP-CON", 21, "File Transfer Protocol-Control", "TCP/UDP", "Allows for a stateful channel for FTP commands")
+#Make one for simple ftp and include both 20/21 to allow naming the acryonum
+syslog = portClass.port("SYSLOG", 514, "System Logging", "UDP", "Enables centralized collection of logs and events")
+ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol")
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftpcon, syslog, ntp]
 testPorts = [http, dns, ntp]
 
 """
 ---Needed Updates---
--maybe for occurences like ftp, make it to where there can be multiple ports under the same protocol or display how to type in ftp-data/con
--maybe have a class that handles the menu flow and display text (like saying ftp-con vs ftp-data)
--Make a menu where you can choose if you want to do random questions or a select question
 -Refactor Q and A type to be more efficent
 -Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
 -Input validation 
+-Print out all information regarding the current port list
+-Maybe add a way to add own ports based off of protocol name (with comma separated list)
+-Make a way to change the ports (Dynamic or static port lists) (Common ports, less common ports)
+-add "Keep changes" selection 
 
 
 -make a way to save score?
@@ -42,29 +44,39 @@ testPorts = [http, dns, ntp]
 #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
 question1 = questionClass.portQuestion("What is the port number of ", testPorts, 2, 0)
 question2 = questionClass.portQuestion("what is a transmission type of ", ports, 2, 1)
-question3 = questionClass.portQuestion("what is the acronym of the port num ", testPorts, 0, 2)
+question3 = questionClass.portQuestion("What is the protocol name of the port ", testPorts, 0, 2)
 
 
 questions = [question1, question3]
 theMenu = menu.myMenu(questions)
-
 questionManager = questionMaker.qMaker(questions)
+
+theMenu.printStarterInfo()
+
+
+#chosenQuestion = None
 
 
 while True:
     
     userAnswer = theMenu.startMenu()
 
+    #Start the game
     if (userAnswer == 0):
         questionManager.startQuestions()
         print("")
+    #Print cool stuff
     elif (userAnswer == 1):
         theMenu.coolStuff()
+    #Quesetion picker selector
     elif (userAnswer == 2):
-        theMenu.printQuestionPicker()
-        #Then wait for user response in the thingy then set the list
-        #Maybe set the questionManager in here
-        #Then make a questionManager thingy that will update the questions list
+        optionAnswer = theMenu.printQuestionOptions()
+        
+        if (optionAnswer < len(questions)):
+            questionManager.setQuestions(questions[optionAnswer])
+        else:
+            questionManager.setQuestions(questions)
+    #Leave program
     elif (userAnswer == 3):
         print("Goodbye.")
         raise SystemExit

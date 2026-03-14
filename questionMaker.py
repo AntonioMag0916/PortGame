@@ -9,7 +9,20 @@ class qMaker:
         self.__masterQuestions = questions.copy()
         #Choose one question out of the array
         
-    
+    def setQuestions(self, questions):
+        
+        
+        if(type(questions) == type(self.__masterQuestions[0])):
+            self.__masterQuestions.clear()
+            self.__masterQuestions.append(questions)
+        else:
+            self.__masterQuestions.clear()
+            self.__masterQuestions = questions.copy()
+
+            
+        
+        
+
     def startQuestions(self):
         self.__startup()
         self.askQuestions()
