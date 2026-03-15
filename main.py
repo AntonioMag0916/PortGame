@@ -18,8 +18,8 @@ import menu
 
 
 
-http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Websites, insecure")
-https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Websites, secure")
+http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Website communication, insecure")
+https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Website communication, secure")
 smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol")
 telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure")
 ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure")
@@ -30,18 +30,21 @@ ftpcon = portClass.port("FTP-CON", 21, "File Transfer Protocol-Control", "TCP/UD
 #Make one for simple ftp and include both 20/21 to allow naming the acryonum
 syslog = portClass.port("SYSLOG", 514, "System Logging", "UDP", "Enables centralized collection of logs and events")
 ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol")
+smb = portClass.port("SMB", 445, "Server Message Block", "TCP", "Network file sharing protocol")
+snmp = portClass.port("SNMP", 161,"Simple Network Management Protocol", "TCP/UDP", "Used to centrally collect and organize data from other network devices")
+snmptrap = portClass.port("SNMP-TRAP", 162 ,"Simple Network Management Protocol - Trap", "TCP/UDP", "Unsolicited message from Agent to Manager ")
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftpcon, syslog, ntp]
 testPorts = [http, dns, ntp]
+commonPorts = [http, https, ssh, dns, ntp, smtp, smb, telnet] #Startoff with 8
+#Think of more port lists
 
 """
 ---Needed Updates---
 -Refactor Q and A type to be more efficent
--Tell the user that when they get one wrong they will end the program (ask if they want to start over maybe)
+-During the game, is the user presses ESC, go back to menu
 -Input validation 
--Print out all information regarding the current port list
 -Maybe add a way to add own ports based off of protocol name (with comma separated list)
--Make a way to change the ports (Dynamic or static port lists) (Common ports, less common ports)
 -add "Keep changes" selection 
 
 
@@ -60,8 +63,9 @@ question3 = questionClass.portQuestion("What is the protocol name of the port ",
 
 
 #Actual startup
+listOfPorts = [testPorts, ports, commonPorts]
 questions = [question1, question3]
-theMenu = menu.myMenu(questions)
+theMenu = menu.myMenu(questions, listOfPorts)
 questionManager = questionMaker.qMaker(questions)
 
 theMenu.printStarterInfo()
@@ -79,10 +83,17 @@ while True:
         print("")
     #Print cool stuff
     elif (userAnswer == 1):
+        
+        optionAnswer = theMenu.printPortOptions()
+        
+        for q in questions:
+            q.setPortList(listOfPorts[optionAnswer])
 
-        #make the choice to eiter print all ports in the PortGame or just for the question list
-        #Make user decide that actually 
-        theMenu.printPortInfo(testPorts)
+       
+
+
+        pass
+        
     #Quesetion picker selector
     elif (userAnswer == 2):
         optionAnswer = theMenu.printQuestionOptions()
@@ -93,6 +104,8 @@ while True:
             questionManager.setQuestions(questions)
     #Leave program
     elif (userAnswer == 3):
+        theMenu.printPortInfo(testPorts)
+    elif (userAnswer == 4):
         print("Goodbye.")
         raise SystemExit
 

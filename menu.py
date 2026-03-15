@@ -5,8 +5,9 @@ class myMenu:
     
 
 
-    def __init__(self, availableQuestion):
+    def __init__(self, availableQuestion, availablePorts):
         self.__questions = availableQuestion
+        self.__portLists = availablePorts
 
     def printStarterInfo(self):
         print("Welcome to PortGame!")
@@ -46,10 +47,13 @@ class myMenu:
         print(f"Start Game ({count})")
         options += f"{count}, "
         count += 1
-        print(f"Display port information ({count})")
+        print(f"Pick ports ({count})")
         options += f"{count}, "
         count += 1 
         print(f"Pick specific question ({count})")
+        options += f"{count}, "
+        count += 1
+        print(f"Display port information ({count})")
         options += f"{count}, "
         count += 1
         print(f"Exit ({count})")  
@@ -61,6 +65,22 @@ class myMenu:
     def coolStuff(self):
         print("\nThis program was written for fun\n")
         time.sleep(1.5)
+
+    def printPortOptions(self):
+        options = self.__calculatePortOptions()
+        count = int(options[-1])
+
+
+        userInput = int(input(f"\nWhat would you like to do?({options}): "))
+
+        #WE should be sanitizing before input
+        while ((userInput < 0) or (userInput > count)):
+            print(f"Not {options} try again.")
+            userInput = int(input(f"What would you like to do?{options}: "))
+
+        print(f"Choosing Option {userInput}\n")
+        time.sleep(0.3)
+        return userInput
 
     #For Selecting type of question 61-98ish
     def printQuestionOptions(self):
@@ -79,6 +99,31 @@ class myMenu:
         time.sleep(0.3)
         return userInput
 
+    def __calculatePortOptions(self):
+        count = 0
+        options = ""
+
+        print("\nPlease pick one, this will decide what ports you get.\n")
+
+        time.sleep(0.35)
+        #We could just make this into a simple len() check, please refactor dummy
+        for portList in self.__portLists:
+            ports = ""
+            for port in portList:
+                ports += f"{port.getProtocolName()} "
+            ports = ports.rstrip()
+            ports = ports.replace(" ", ",")
+            print(f"{ports} ({count})")
+            
+            if (portList != self.__portLists[-1]):
+                options += str(count) + ", "
+            else:
+                options += f"or {count}"
+            
+            count += 1
+            time.sleep(0.70)
+
+        return options
 
     def __calculateQuestionOptions(self):
         count = 0  

@@ -18,9 +18,6 @@ class qMaker:
         else:
             self.__masterQuestions.clear()
             self.__masterQuestions = questions.copy()
-
-            
-        
         
 
     def startQuestions(self):

@@ -9,7 +9,14 @@ class portQuestion:
         self.__question = question
         self.__qType = questionType
         self.__aType = answerType
+    
+    def setPortList(self, ports):
         
+        #Maybe change this to not give the user an option to set a port list already there
+        #Maybe display to the user the current port list selected
+        if (self.__masterPorts != ports):
+            self.__masterPorts.clear()
+            self.__masterPorts = ports.copy()
         
     def getRawQuestion(self):
         return self.__question
