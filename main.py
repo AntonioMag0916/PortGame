@@ -89,10 +89,6 @@ while True:
         for q in questions:
             q.setPortList(listOfPorts[optionAnswer])
 
-       
-
-
-        pass
         
     #Quesetion picker selector
     elif (userAnswer == 2):

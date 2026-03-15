@@ -17,7 +17,10 @@ class portQuestion:
         if (self.__masterPorts != ports):
             self.__masterPorts.clear()
             self.__masterPorts = ports.copy()
-        
+
+    def getCurrentPortList(self):
+        return self.__masterPorts
+
     def getRawQuestion(self):
         return self.__question
 
