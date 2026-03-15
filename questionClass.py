@@ -5,15 +5,21 @@ import re
 #(Input validation needed)
 class portQuestion:
     def __init__(self, question, ports, questionType, answerType):
-        self.__ports = ports.copy()
+        self.__masterPorts = ports.copy()
         self.__question = question
-        self.__currentIndex = self.__selectNewPort() 
-        self.__currentPort = self.__ports[self.__currentIndex]
         self.__qType = questionType
         self.__aType = answerType
-        self.__formattedQuestion = self.__formatQuestion()
-        
     
+    def setPortList(self, ports):
+        
+        #Maybe change this to not give the user an option to set a port list already there
+        #Maybe display to the user the current port list selected
+        if (self.__masterPorts != ports):
+            self.__masterPorts.clear()
+            self.__masterPorts = ports.copy()
+        
+    def getRawQuestion(self):
+        return self.__question
 
     def askQuestion(self):
         self.__formattedQuestion = self.__formatQuestion()
@@ -34,7 +40,7 @@ class portQuestion:
             case 1:
                 return self.__checkTransmission(userInput)
             case 2: 
-                return (userInput == self.__currentPort.getAcronym()) 
+                return (userInput == self.__currentPort.getProtocolName()) 
 
 
     #Just returns the correct answer
@@ -45,10 +51,17 @@ class portQuestion:
             case 1:
                 return self.__currentPort.getTransmissionType()
             case 2: 
-                return self.__currentPort.getAcronym()
+                return self.__currentPort.getProtocolName()
 
     def getPortLength(self):
         return len(self.__ports)
+
+    def resetQuestion(self):
+        self.__ports = self.__masterPorts.copy()
+        self.__currentIndex = self.__selectNewPort() 
+        self.__currentPort = self.__ports[self.__currentIndex]
+        self.__formattedQuestion = self.__formatQuestion()
+
 
     #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
     #What is the port num of HTTP? Q type would be 2
@@ -60,7 +73,7 @@ class portQuestion:
             case 1: 
                 return self.__question + self.__currentPort.getTransmissionType()
             case 2: 
-                return self.__question + self.__currentPort.getAcronym()
+                return self.__question + self.__currentPort.getProtocolName()
             
 
     def __selectNewPort(self):

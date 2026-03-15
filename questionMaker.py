@@ -1,19 +1,32 @@
 import random
 import math
+import time
 
 class qMaker:
     
     #Initalization of a first question
     def __init__(self, questions):
-        self.__questions = questions
+        self.__masterQuestions = questions.copy()
         #Choose one question out of the array
-        self.__currentQuestion = self.__selectNewQuestion()
-        self.__score = 0
-        self.__correctQuestions = []
+        
+    def setQuestions(self, questions):
+        
+        
+        if(type(questions) == type(self.__masterQuestions[0])):
+            self.__masterQuestions.clear()
+            self.__masterQuestions.append(questions)
+        else:
+            self.__masterQuestions.clear()
+            self.__masterQuestions = questions.copy()
+        
+
+    def startQuestions(self):
+        self.__startup()
+        self.askQuestions()
     
 
     #Handles starting to ask the new questions
-    def startQuestions(self):
+    def askQuestions(self):
         
         #answer will be different depending on the aType
         answer = input(self.__currentQuestion.askQuestion() + "?: ")
@@ -52,21 +65,46 @@ class qMaker:
             self.__printAnswers()
             
 
+    
+    def __startup(self):
+        print("Startup done")
+        self.__questions = self.__masterQuestions.copy()
+        self.__score = 0
+        self.__correctQuestions = []
+        self.__currentQuestion = self.__selectNewQuestion()
+
+        for question in self.__questions:
+            question.resetQuestion()
+
     #(might need change)
     def __selectNewQuestion(self):
-        questionsLen = len(self.__questions)
-        index = math.floor(random.random() * questionsLen)
-        return self.__questions[index]
+        
+        if (len(self.__questions) == 1):
+            return self.__questions[0]
+        else:
+            questionsLen = len(self.__questions)
+            index = math.floor(random.random() * questionsLen)
+            return self.__questions[index]
     
     def __printAnswers(self):
+        
         #Print all correct answers
+        
         print("\nYour final score was: " + str(self.__score))
+        time.sleep(1.5)
+        
+        
         print("\nCorrect answers: ")
 
-        for correctQuestion in self.__correctQuestions:
-            print(correctQuestion)
+        if (self.__score == 0):
+            print("None.")
+            time.sleep(0.75)
+        else:
+            for correctQuestion in self.__correctQuestions:
+                print(correctQuestion)
+                time.sleep(0.75)
 
     def __continueQuestions(self):
         self.__currentQuestion = self.__selectNewQuestion()
-        self.startQuestions()  
+        self.askQuestions()  
     
