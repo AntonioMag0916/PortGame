@@ -123,7 +123,7 @@ class myMenu:
                 options += f"or {count}"
             
             count += 1
-            time.sleep(0.70)
+            time.sleep(0.35)
 
         return options
 

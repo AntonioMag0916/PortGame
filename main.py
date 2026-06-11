@@ -18,26 +18,68 @@ import menu
 
 
 
-http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Website communication, insecure")
-https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Website communication, secure")
-smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol")
-telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure")
-ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure")
-dns = portClass.port("DNS", 53, "Domain Name System", "TCP/UDP", "IPs to human readable text")
-mysql = portClass.port("MYSQL", 3306, "MySQL", "TCP", "SQL Server")
 ftpdata = portClass.port("FTP-DATA", 20, "File Transfer Protocol-Data", "TCP/UDP", "FTP download and upload service")
 ftpcon = portClass.port("FTP-CON", 21, "File Transfer Protocol-Control", "TCP/UDP", "Allows for a stateful channel for FTP commands")
-#Make one for simple ftp and include both 20/21 to allow naming the acryonum
-syslog = portClass.port("SYSLOG", 514, "System Logging", "UDP", "Enables centralized collection of logs and events")
+ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure")
+telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure")
+smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol")
+tacacs = portClass.port("TACACS", 49, "TACACS", "TCP", "N/A")
+dns = portClass.port("DNS", 53, "Domain Name System", "TCP/UDP", "IPs to human readable text")
+dhcpserver = portClass.port("DHCP-SERVER", 67, "DHCP-SERVER", "UDP", "N/A")
+dhcpclient = portClass.port("DHCP-CLIENT", 68, "DHCP-CLIENT", "UDP", "N/A")
+tftp = portClass.port("TFTP", 69, "Trivial File Transfer Protocol", "UDP", "N/A")
+http = portClass.port("HTTP", 80, "Hypertext Transfer Protocol", "TCP","Website communication, insecure")
+kerberos = portClass.port("KERBEROS", 88, "Kerberos", "TCP/UDP", "N/A")
+pop3 = portClass.port("POP3", 110, "Post Office Protocol", "TCP", "N/A")
+nntp = portClass.port("NNTP", 119, "Network News Transfer Protocol", "TCP", "N/A")
 ntp = portClass.port("NTP", 123, "Network Time Protocol", "UDP", "Automatic time update protocol")
-smb = portClass.port("SMB", 445, "Server Message Block", "TCP", "Network file sharing protocol")
+rpc = portClass.port("RPC", 135, "Remove Procedure Protocol", "TCP", "N/A")
+netbiosName = portClass.port("NETBIOS-NAME", 137, "NETBIOS-NAME", "UDP", "N/A")
+netbiosDatagram = portClass.port("NETBIOS-DATAGRAM", 138, "NETBIOS-DATAGRAM", "UDP", "N/A")
+netbiosSession = portClass.port("NETBIOS-SESSION", 139, "NETBIOS-SESSION", "TCP", "N/A")
+imap = portClass.port("IMAP", 143, "Internet Message Access Protocol", "TCP", "N/A")
 snmp = portClass.port("SNMP", 161,"Simple Network Management Protocol", "TCP/UDP", "Used to centrally collect and organize data from other network devices")
 snmptrap = portClass.port("SNMP-TRAP", 162 ,"Simple Network Management Protocol - Trap", "TCP/UDP", "Unsolicited message from Agent to Manager ")
+xdmcp = portClass.port("XDMCP", 177, "X Display Manager Control Protocol", "UDP", "N/A")
+bgp = portClass.port("BGP", 179, "Border Gateway Protocol", "TCP", "N/A")
+irc = portClass.port("IRC", 194, "Internet Relay Chat", "TCP", "N/A")
+ldap = portClass.port("LDAP", 389, "Lightweight Directory Access Protocol", "TCP/UDP", "AD Protocol")
+https = portClass.port("HTTPS", 443, "Hypertext Transfer Protocol Secure", "TCP", "Website communication, secure")
+smb = portClass.port("SMB", 445, "Server Message Block", "TCP", "Network file sharing protocol")
+smtps = portClass.port("SMTPS", 465, "Simple Mail Transfer Protocol Secure", "TCP", "Implicit TLS")
+ipsec = portClass.port("IPSEC", 500, "Internet Key Exchange", "UDP", "Used with IKE")
+syslog = portClass.port("SYSLOG", 514, "System Logging", "UDP", "Enables centralized collection of logs and events")
+starttls = portClass.port("STARTTLS", 587, "STARTTLS", "TCP", "SMTP submission, better than smtps")
+ldaps = portClass.port("LDAPS", 636, "LDAP Secure", "TCP", "N/A")
+imaps = portClass.port("IMAPS", 993, "IMAP Secure", "TCP", "N/A")
+pop3s = portClass.port("POP3S", 995, "POP3 Secure", "TCP", "N/A")
+mssqlserver = portClass.port("MS-SQL-Server", 1433, "MS-SQL-Server", "TCP", "N/A")
+mssqlbrowser = portClass.port("MS-SQL-Browser", 1434, "MS-SQL-Browser", "UDP", "N/A")
+oracleDB = portClass.port("ORACLE-DB", 1521, "ORACLE-DB", "TCP", "Targeted port by attackers")
+l2tp = portClass.port("L2TP", 1701, "Layer 2 Tunneling Protocol", "UDP", "N/A")
+pptp = portClass.port("PPTP", 1723, "Point to Point Protocol", "TCP", "N/A")
+radiusAuth = portClass.port("RADIUS-AUTH", 1812, "RADIUS-AUTH", "UDP", "N/A")
+radiusAccounting = portClass.port("RADIUS-AUTH", 1813, "RADIUS-ACCOUNTING", "UDP", "N/A")
+nfs = portClass.port("NFS", 2049, "Network File System", "TCP/UDP", "N/A")
+squidProxy = portClass.port("SQUID-PROXY", 3128, "SQUID-PROXY", "TCP", "N/A")
+mysql = portClass.port("MYSQL", 3306, "MySQL", "TCP", "SQL Server")
+rdp = portClass.port("RDP", 3389, "Remote Desktop Protocol", "TCP", "Remote access")
+metasploit = portClass.port("METASPLOIT", 4444, "METASPLOIT", "TCP", "N/A")
+sip = portClass.port("SIP", 5060, "Session Initation Protocol", "TCP/UDP", "N/A")
+sips = portClass.port("SIPS", 5061, "SIP Secure", "TCP/UDP", "N/A")
+postgreSQL = portClass.port("POSTGRE-SQL", 5432, "POSTGRE-SQL", "TCP", "N/A")
+vnc = portClass.port("VNC", 5900, "Virtual Network Computing", "TCP", "N/A")
+syslogTLS = portClass.port("SYSLOG-TLS", 6514, "Secure Syslog", "TCP", "N/A")
+httpAltProxy = portClass.port("HTTP-ALT-PROXY", 8080, "HTTP Alternative", "TCP", "N/A")
+httpAltVPN = portClass.port("HTTP-ALT-PROXY", 8443, "HTTP Alternative", "TCP", "N/A")
+
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftpcon, syslog, ntp]
 testPorts = [http, dns, ntp]
 commonPorts = [http, https, ssh, dns, ntp, smtp, smb, telnet] #Startoff with 8
 #Think of more port lists
+secPlusMain = [ftpdata, ftpcon, ssh, telnet, smtp, tacacs, dns, http, pop3, imap, snmp, snmptrap, ldap, https, smb, ipsec, ldaps, pop3s, imaps, l2tp, pptp, radiusAccounting, radiusAuth, rdp, vnc]
+secPlusAlt = [telnet, ssh, ftpcon, ftpdata, pptp, syslog]
 
 """
 ---Needed Updates---
@@ -57,13 +99,13 @@ commonPorts = [http, https, ssh, dns, ntp, smtp, smb, telnet] #Startoff with 8
 #might need answer type then so it knows how to ask it
 #Q type 0 = port, 1 = tranmsission, 2 = acryonym (what is integrated in the question)
 #A type 0 = port, 1 = transmission, 2 = acryonym (What is the answer?)
-question1 = questionClass.portQuestion("What is the port number of ", testPorts, 2, 0)
-question2 = questionClass.portQuestion("what is a transmission type of ", ports, 2, 1)
-question3 = questionClass.portQuestion("What is the protocol name of the port ", testPorts, 0, 2)
+question1 = questionClass.portQuestion("What is the port number of ", secPlusMain, 2, 0)
+question2 = questionClass.portQuestion("what is a transmission type of ", secPlusMain, 2, 1)
+question3 = questionClass.portQuestion("What is the protocol name of the port ", secPlusMain, 0, 2)
 
 
 #Actual startup
-listOfPorts = [testPorts, ports, commonPorts]
+listOfPorts = [secPlusMain, secPlusAlt, ports]
 questions = [question1, question3]
 theMenu = menu.myMenu(questions, listOfPorts)
 questionManager = questionMaker.qMaker(questions)
@@ -100,7 +142,7 @@ while True:
             questionManager.setQuestions(questions)
     #Leave program
     elif (userAnswer == 3):
-        theMenu.printPortInfo(testPorts)
+        theMenu.printPortInfo(secPlusMain)
     elif (userAnswer == 4):
         print("Goodbye.")
         raise SystemExit
