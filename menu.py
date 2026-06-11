@@ -103,6 +103,8 @@ class myMenu:
         count = 0
         options = ""
 
+        #This is where the part showing the currently selected port list so we dont print it out
+
         print("\nPlease pick one, this will decide what ports you get.\n")
 
         time.sleep(0.35)
@@ -121,14 +123,14 @@ class myMenu:
                 options += f"or {count}"
             
             count += 1
-            time.sleep(0.70)
+            time.sleep(0.35)
 
         return options
 
     def __calculateQuestionOptions(self):
         count = 0  
         options = ""
-
+        
         print("\nPlease pick one, this will decide what question you get.\n")
         #Eventually a comma separated list will decide too
         time.sleep(0.35)
