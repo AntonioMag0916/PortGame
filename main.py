@@ -19,7 +19,7 @@ import menu
 
 
 ftpdata = portClass.port("FTP-DATA", 20, "File Transfer Protocol-Data", "TCP/UDP", "FTP download and upload service")
-ftpcon = portClass.port("FTP-CON", 21, "File Transfer Protocol-Control", "TCP/UDP", "Allows for a stateful channel for FTP commands")
+ftpcon = portClass.port("FTP-CONTROL", 21, "File Transfer Protocol-Control", "TCP/UDP", "Allows for a stateful channel for FTP commands")
 ssh = portClass.port("SSH", 22, "Secure Shell", "TCP/UDP", "Remote access protocol, secure")
 telnet = portClass.port("TELNET", 23, "Telent", "TCP", "Remote access protocol, insecure")
 smtp = portClass.port("SMTP", 25, "Simple Mail Transfer Protocl", "TCP", "Mail deilvery protocol")
@@ -59,7 +59,7 @@ oracleDB = portClass.port("ORACLE-DB", 1521, "ORACLE-DB", "TCP", "Targeted port 
 l2tp = portClass.port("L2TP", 1701, "Layer 2 Tunneling Protocol", "UDP", "N/A")
 pptp = portClass.port("PPTP", 1723, "Point to Point Protocol", "TCP", "N/A")
 radiusAuth = portClass.port("RADIUS-AUTH", 1812, "RADIUS-AUTH", "UDP", "N/A")
-radiusAccounting = portClass.port("RADIUS-AUTH", 1813, "RADIUS-ACCOUNTING", "UDP", "N/A")
+radiusAccounting = portClass.port("RADIUS-ACCOUNTING", 1813, "RADIUS-ACCOUNTING", "UDP", "N/A")
 nfs = portClass.port("NFS", 2049, "Network File System", "TCP/UDP", "N/A")
 squidProxy = portClass.port("SQUID-PROXY", 3128, "SQUID-PROXY", "TCP", "N/A")
 mysql = portClass.port("MYSQL", 3306, "MySQL", "TCP", "SQL Server")
@@ -73,13 +73,24 @@ syslogTLS = portClass.port("SYSLOG-TLS", 6514, "Secure Syslog", "TCP", "N/A")
 httpAltProxy = portClass.port("HTTP-ALT-PROXY", 8080, "HTTP Alternative", "TCP", "N/A")
 httpAltVPN = portClass.port("HTTP-ALT-PROXY", 8443, "HTTP Alternative", "TCP", "N/A")
 
+allPorts = [ftpdata, ftpcon, ssh, telnet, smtp, tacacs, dns, 
+            dhcpserver, dhcpclient, tftp, http, kerberos, pop3, 
+            nntp, ntp, rpc, netbiosName, netbiosDatagram, netbiosSession, 
+            imap, snmp, snmptrap, xdmcp, bgp, irc, ldap, https, smb, 
+            smtps, ipsec, syslog, starttls, ldaps, imaps, pop3s, mssqlserver, 
+            mssqlbrowser, oracleDB, l2tp, pptp, radiusAuth, radiusAccounting,
+            nfs, squidProxy, mysql, rdp, metasploit, sip, sips,
+            postgreSQL, vnc, syslogTLS, httpAltProxy, httpAltVPN]
 
 ports = [http, https, smtp, telnet, ssh, dns, mysql, ftpdata, ftpcon, syslog, ntp]
 testPorts = [http, dns, ntp]
 commonPorts = [http, https, ssh, dns, ntp, smtp, smb, telnet] #Startoff with 8
 #Think of more port lists
-secPlusMain = [ftpdata, ftpcon, ssh, telnet, smtp, tacacs, dns, http, pop3, imap, snmp, snmptrap, ldap, https, smb, ipsec, ldaps, pop3s, imaps, l2tp, pptp, radiusAccounting, radiusAuth, rdp, vnc]
-secPlusAlt = [telnet, ssh, ftpcon, ftpdata, pptp, syslog]
+secPlusMain = [ftpdata, ftpcon, ssh, telnet, smtp, tacacs, dns, http, pop3, imap, snmp, snmptrap, ldap, https, smb, ipsec, ldaps, pop3s, imaps, l2tp, pptp, radiusAuth, radiusAccounting, rdp, vnc]
+
+secPlusPortsPlus = [ftpdata, ftpcon, ssh, telnet, smtp, tacacs, dns, http, kerberos, 
+                    pop3, imap, snmp, snmptrap, bgp, ldap, https, smb, ipsec, ldaps, pop3s, 
+                    imaps, l2tp, pptp, radiusAuth, radiusAccounting, rdp, sip, sips, vnc, syslogTLS]
 
 """
 ---Needed Updates---
@@ -105,7 +116,7 @@ question3 = questionClass.portQuestion("What is the protocol name of the port ",
 
 
 #Actual startup
-listOfPorts = [secPlusMain, secPlusAlt, ports]
+listOfPorts = [secPlusMain, secPlusPortsPlus, ports]
 questions = [question1, question3]
 theMenu = menu.myMenu(questions, listOfPorts)
 questionManager = questionMaker.qMaker(questions)
@@ -142,7 +153,11 @@ while True:
             questionManager.setQuestions(questions)
     #Leave program
     elif (userAnswer == 3):
-        theMenu.printPortInfo(secPlusMain)
+        
+        theMenu.printPortInfo(allPorts)
+        
+        #Change this later but this should grab whatever list of ports is currently here 
+
     elif (userAnswer == 4):
         print("Goodbye.")
         raise SystemExit
