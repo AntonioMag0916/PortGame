@@ -3,8 +3,6 @@ import time
 
 class myMenu:
     
-
-
     def __init__(self, availableQuestion, availablePorts):
         self.__questions = availableQuestion
         self.__portLists = availablePorts
@@ -23,7 +21,7 @@ class myMenu:
                   f"Number: {port.getPortNum()}, "
                   f"Transmission: {port.getTransmissionType()}")
             c += 1
-            time.sleep(.35)
+            time.sleep(.075)
         print("\n")
 
     
@@ -107,7 +105,7 @@ class myMenu:
 
         print("\nPlease pick one, this will decide what ports you get.\n")
 
-        time.sleep(0.35)
+        time.sleep(0.25)
         #We could just make this into a simple len() check, please refactor dummy
         for portList in self.__portLists:
             ports = ""
@@ -121,9 +119,9 @@ class myMenu:
                 options += str(count) + ", "
             else:
                 options += f"or {count}"
-            
+            print("")
+            time.sleep(.35)
             count += 1
-            time.sleep(0.35)
 
         return options
 
