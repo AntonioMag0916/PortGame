@@ -94,7 +94,7 @@ class myMenu:
             userInput = int(input(f"What would you like to do?{options}: "))
 
         print(f"Choosing Option {userInput}\n")
-        time.sleep(0.3)
+        time.sleep(0.25)
         return userInput
 
     def __calculatePortOptions(self):
@@ -120,7 +120,7 @@ class myMenu:
             else:
                 options += f"or {count}"
             print("")
-            time.sleep(.35)
+            time.sleep(.25)
             count += 1
 
         return options
@@ -131,7 +131,7 @@ class myMenu:
         
         print("\nPlease pick one, this will decide what question you get.\n")
         #Eventually a comma separated list will decide too
-        time.sleep(0.35)
+        time.sleep(0.25)
         #We could just make this into a simple len() check, please refactor dummy
         for question in self.__questions:
             print(str(question.getRawQuestion()) + "(" + str(count) + ")" )
