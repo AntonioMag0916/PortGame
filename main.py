@@ -116,7 +116,7 @@ question3 = questionClass.portQuestion("What is the protocol name of the port ",
 
 
 #Actual startup
-listOfPorts = [secPlusMain, secPlusPortsPlus, ports]
+listOfPorts = [secPlusMain, secPlusPortsPlus, allPorts]
 questions = [question1, question3]
 theMenu = menu.myMenu(questions, listOfPorts)
 questionManager = questionMaker.qMaker(questions)
