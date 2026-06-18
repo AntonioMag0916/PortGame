@@ -139,7 +139,7 @@ class myMenu:
             options += str(count) + ", "
             count += 1
 
-            time.sleep(0.70)
+            time.sleep(0.35)
 
         print("All (" + str(count) + ")")
         options += "or " + str(count)
